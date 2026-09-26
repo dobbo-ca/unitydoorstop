@@ -66,6 +66,11 @@ void mono_doorstop_bootstrap(void *mono_domain) {
     setenv(TEXT("DOORSTOP_MANAGED_FOLDER_DIR"), norm_assembly_dir, TRUE);
     free(norm_assembly_dir);
 
+    if (!file_exists(config.target_assembly)) {
+        LOG("Could not find target assembly!");
+        return;
+    }
+
     LOG("Opening assembly: %s", config.target_assembly);
     void *file = fopen(config.target_assembly, "r");
     if (!file) {

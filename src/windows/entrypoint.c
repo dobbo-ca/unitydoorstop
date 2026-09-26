@@ -292,11 +292,6 @@ BOOL WINAPI DllEntry(HINSTANCE hInstDll, DWORD reasonForDllLoad,
 
     redirect_output_log(paths);
 
-    if (!file_exists(config.target_assembly)) {
-        LOG("Could not find target assembly!");
-        config.enabled = FALSE;
-    }
-
     inject(paths);
 
     paths_free(paths);
